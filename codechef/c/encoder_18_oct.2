@@ -2,94 +2,56 @@
 
  
 
-#include<stdio.h>
 
-int colour(int x,int y,int a[50],int b[50])
-{
-    int temp,count=1;
-   for(int i=0;i<x;i++)
-  {
-     for(int j=0;j<i;j++)
-     {
-            if(a[i]>=a[j])
-            {
-		b[j]=b[i];
-            }
-     }
-   }
-
-/*for(int i=0;i<x;i++)
-{
-   printf("%d",b[i]);
-}
-printf("\n");
-*/
-//sorting b array
- for(int i=0;i< x;i++)
-    {
-        for(int j=i+1;j< x;j++)
-        {
-            if(b[i]>b[j])
-            {
-                temp    =b[i];
-                b[i]  =b[j];
-                b[j]  =temp;
-            }
-        }
-    }
-
-/*for(int i=0;i<x;i++)
-{
-   printf("%d",b[i]);
-}
-
-*/
-//counting unique elements
-
-for(int i = 0; i < x -1; i++)
-    {
-     if(b[i]==b[i+1])
-       continue;
-     else
-       count++;
-    }
-
- return count;
-
-}
-
-
-
+   #include <stdio.h>
+#include <stdlib.h>
 
 int main()
 {
-   int n,x,y,a[50],b[50],res[50];
-   
-   scanf("%d",&n);
+   int t;
+   scanf("%d",&t);
+   while(t--)
+   {
+        long long int n,m,j;
+        scanf("%lld %lld",&n,&m);
+        long long int N[n];
+         long long int  M[n];
 
-   for(int i=1;i<=n;++i)
-  {
-    scanf("%d%d",&x,&y);
-     for(int j=0;j<x;++j)
-    {
-        scanf("%d",&a[j]);
-	
-    }
-   for(int j=0;j<x;++j)
-    {
-         scanf("%d",&b[j]);
-	
-    }
+        for(j=0;j<n;j++)
+            scanf("%lld",&N[j]);
 
-    res[i] = colour(x,y,a,b);
+        for(j=0;j<n;j++)
+            scanf("%lld",&M[j]);
 
-  }
+        long long int c=N[n-1];
 
-   for(int i=1;i<=n;++i)
- {
-    printf("%d\n",res[i]);
- }
-return 0;
+        long long int k=M[n-1],f=1;
+        long long int clr[m]={};
+ j=n-2;
+        while(j>=0)
+        {
+           clr[k]=1;
+            if(N[j]>c&&M[j]!=k)
+            {
+                  
+                  f++;
+                  clr[M[j]]=1;
+                  c=N[j];
+                  k=M[j];
+
+            }
+            j=j-1;
+
+     }
+      long long count=0;
+      for(j=1;j<m;j++)
+      {
+          if(clr[j]!=0);
+          count++;
+      }
+           
+     
+     printf("%lld \n",count);
 }
-
+}
 
